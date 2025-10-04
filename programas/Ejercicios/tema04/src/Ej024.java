@@ -29,8 +29,89 @@ Introduzca su estado civil (1 - Soltero, 2 - Casado): 2
 ----------------------------------
  */
 
-public class Ej024 {
+import java.util.Scanner;
 
-    
+public class Ej024 {
+    public static void main(String[] args) {
+
+        final double SALARIO_JUNIOR = 950;
+        final double SALARIO_SENIOR = 1200;
+        final double SALARIO_JEFE_PROYECTO = 1600;
+        final int DIETAS = 30;
+        final int PCT_IRPF_SOLTERO = 25;
+        final int PCT_IRPF_CASADO = 20;
+
+        double salarioBase = 0;
+        double importeDietas = 0;
+        double salarioBruto = 0;
+        double salarioNeto = 0;
+        double importeRetencionIRPF = 0;
+        int valorRetencionIRPF = 0;
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("| --------------------------------- |");
+        System.out.println("| CÁLCULO DE NÓMINA DE TRABAJADORES |");
+        System.out.println("| --------------------------------- |");
+        System.out.println("| 1.- Programador Junior            |");
+        System.out.println("| 2.- Programador Senior            |");
+        System.out.println("| 3.- Jefe de Proyecto              |");
+        System.out.println("| --------------------------------- |");
+
+        System.out.print("Introduce el cargo del empleado (1 - 3): ");
+        int tipoTrabajador = sc.nextInt();
+
+        System.out.print("¿Cuántos días ha estado de viaje visitando clientes? ");
+        int cantidadDietas = sc.nextInt();
+
+        sc.nextLine(); // limpiar el buffer antes de leer texto
+        System.out.print("Introduce el estado civil (soltero, casado): ");
+        String estadoCivil = sc.nextLine().toLowerCase();
+
+        switch (tipoTrabajador) {
+            case 1 -> salarioBase = SALARIO_JUNIOR;
+            case 2 -> salarioBase = SALARIO_SENIOR;
+            case 3 -> salarioBase = SALARIO_JEFE_PROYECTO;
+            default -> {
+                System.out.println("Tipo de trabajador no válido");
+                sc.close();
+                return;
+            }
+        }
+
+        importeDietas = cantidadDietas * DIETAS;
+        salarioBruto = salarioBase + importeDietas;
+
+        switch (estadoCivil) {
+            case "soltero" -> {
+                importeRetencionIRPF = salarioBruto * (PCT_IRPF_SOLTERO / 100.0);
+                valorRetencionIRPF = PCT_IRPF_SOLTERO;
+            }
+            case "casado" -> {
+                importeRetencionIRPF = salarioBruto * (PCT_IRPF_CASADO / 100.0);
+                valorRetencionIRPF = PCT_IRPF_CASADO;
+            }
+            default -> {
+                System.out.println("Estado civil no válido");
+                sc.close();
+                return;
+            }
+        }
+
+        salarioNeto = salarioBruto - importeRetencionIRPF;
+
+        System.out.println("| --------------------------------- |");
+        System.out.printf("| Sueldo base:          %8.2f €  |\n", salarioBase);
+        System.out.printf("| Dietas (%2d viajes):   %8.2f €  |\n", cantidadDietas, importeDietas);
+        System.out.println("|-----------------------------------|");
+        System.out.printf("| Sueldo bruto:         %8.2f €  |\n", salarioBruto);
+        System.out.printf("| Retención IRPF (%2d%%): %8.2f €  |\n", valorRetencionIRPF, importeRetencionIRPF);
+        System.out.println("|-----------------------------------|");
+        System.out.printf("| Sueldo neto:          %8.2f €  |\n", salarioNeto);
+        System.out.println("| --------------------------------- |");
+
+        sc.close();
+    }
 }
+
 

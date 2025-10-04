@@ -6,19 +6,15 @@ introducido por teclado
 
 import java.util.Scanner;
 
-public class Ej017 {
+public class Ej017_2 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Introduce un número entero por teclado: ");
-        int numero = sc.nextInt();
+        String numero = sc.nextLine();
 
-        if (numero < 0) {
-            numero = -numero;
-        }
+        System.out.println(numero.length());
 
-        int ultimaCifra = numero % 10;
-
-        System.out.println("La última cifra del número " + numero + " es: " + ultimaCifra);
+        System.out.println(numero.substring(numero.length()-1));
 
         sc.close();
     }

@@ -25,8 +25,37 @@ Nota del segundo control: 3
 Tu nota de Programación es 4.5
  */
 
+import java.util.Scanner;
+
 public class Ej021 {
 
-    
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Calcula la Nota del Trimetre de un alumno");
+        System.out.println("Nota del primer examen: ");
+        double nota1 = sc.nextDouble();
+        System.out.println("Nota del segundo examen: ");
+        double nota2 = sc.nextDouble();
+
+        double media = (nota1 + nota2) / 2;
+
+        if (media >= 5) {
+            System.out.println("Tu nota de Programación es " + media);
+        } else {
+            sc.nextLine();
+            System.out.println("¿Cuál ha sido el resultado de la recuperación? (apto/no apto): ");
+            String recuperacion = sc.nextLine();
+            if (recuperacion.equals("apto")) {
+                System.out.println("Tu nota de Programación es 5");
+            } else if (recuperacion.equals("no apto")) {
+                System.out.println("Tu nota de Programación es " + media);
+            } else {
+                System.out.println("El resultado de la recuperación no es correcta");
+            }
+        }
+        sc.close();
+    }
 }
 

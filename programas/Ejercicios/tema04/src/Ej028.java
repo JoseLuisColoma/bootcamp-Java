@@ -17,8 +17,39 @@ Turno del jugador 2 (introduzca piedra, papel o tijera): tijera
 Gana el jugador 1
  */
 
-public class Ej028 {
+import java.util.Scanner;
 
-    
+public class Ej028 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println(" ========== JUEGO DE PIEDRA, PAPEL O TIJERA =========== ");
+        System.out.println("Turno del jugador 1 (piedra, papel o tijera?): ");
+        String jugador1 = sc.nextLine().toLowerCase();
+        System.out.println("Turno del jugador 2 (piedra, papel o tijera?): ");
+        String jugador2 = sc.nextLine().toLowerCase();
+
+        if (jugador1.equals(jugador2)) {
+            System.out.println("EMPATE");
+        } else if (jugador1.equals("tijera") && jugador2.equals("papel")) {
+            System.out.println("GANA EL JUGADOR 1");
+        } else if (jugador1.equals("tijera") && jugador2.equals("piedra")) {
+            System.out.println("GANA EL JUGADOR 2");
+        } else if (jugador1.equals("papel") && jugador2.equals("piedra")) {
+            System.out.println("GANA EL JUGADOR 1");
+        } else if (jugador1.equals("papel") && jugador2.equals("tijera")) {
+            System.out.println("GANA EL JUGADOR 2");
+        } else if (jugador1.equals("piedra") && jugador2.equals("tijera")) {
+            System.out.println("GANA EL JUGADOR 1");
+        } else if (jugador1.equals("piedra") && jugador2.equals("papel")) {
+            System.out.println("GANA EL JUGADOR 2");
+        } else {
+            System.out.println("Ha habido un error. Vuelve a pedir piedra papel o tijera");
+        }
+
+        sc.close();
+
+    }
+
 }
 

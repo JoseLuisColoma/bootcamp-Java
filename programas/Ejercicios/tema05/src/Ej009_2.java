@@ -8,32 +8,34 @@ esta manera, la única limitación en el número de dígitos la establece el tip
 dato que se utilice (int o long).
 */
 
-/* Solución poco eficiente con un FOR */
+/* Solución más eficiente con un WHILE */
 
 import java.util.Scanner;
 
-public class Ej009 {
+public class Ej009_2 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Introduce un número entero por teclado: ");
-        long numero = sc.nextInt();
-        int multiplo_10= 10;
+        System.out.print("Introduce un número entero: ");
+        long numeroInicial = sc.nextLong(); // usamos long para admitir más cifras
 
+        long numero = numeroInicial;
         if (numero < 0) {
             numero = -numero;
         }
 
-        int digitos = 1;
+        int digitos = 0;
 
-        for (int i = 1; i <= numero; i++) {
-            if (i % multiplo_10 == 0){
-                digitos+=1;
-                multiplo_10 *= 10;
-
+        if (numero == 0) {
+            digitos = 1;
+        } else {
+            while (numero > 0) {
+                numero /= 10;
+                digitos++;
             }
-
         }
-        System.out.println("el número " + numero + " tiene " + digitos + " digitos");
 
+        System.out.println("El número " + numeroInicial + " tiene " + digitos + " dígito(s).");
+        sc.close();
     }
 }
+

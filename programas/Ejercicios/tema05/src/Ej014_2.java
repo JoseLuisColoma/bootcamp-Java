@@ -4,9 +4,12 @@ Escribe un programa que pida una base y un exponente (entero positivo) y que
 calcule la potencia
  */
 
-import java.util.Scanner;
+/* Sencillo empleando la clase MAth */
 
-public class Ej014 {
+import java.util.Scanner;
+import java.lang.Math;
+
+public class Ej014_2 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -23,12 +26,11 @@ public class Ej014 {
 
         long potencia = 1; // inicializamos en 1 para manejar correctamente exponente=0
 
-        for (int i = 0; i < exponente; i++) {
-            potencia *= base;
-        }
+        potencia = (long) Math.pow(base, exponente);
 
         System.out.printf("%d ^ %d = %d%n", base, exponente, potencia);
 
         sc.close();
     }
 }
+

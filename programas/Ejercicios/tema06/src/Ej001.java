@@ -5,4 +5,5 @@ también la suma total (los puntos que suman entre los tres dados).
  */
 
 public class Ej001 {
+
 }

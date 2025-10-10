@@ -1,6 +1,6 @@
 /*
 Ejercicio 2
-Crea la clase Vehiculo, así como las clases Bicicleta y Coche como subclases de
+Crea la clase Vehiculo, así como las clases Bicicleta y Ejemplo1.Coche como subclases de
 la primera. Para la clase Vehiculo, crea los atributos de clase vehiculosCreadosy
 kilometrosTotales, así como el atributo de instancia kilometrosRecorridos. Crea
 también algún método específico para cada una de las subclases. Prueba las

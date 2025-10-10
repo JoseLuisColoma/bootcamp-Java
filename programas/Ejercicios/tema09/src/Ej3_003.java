@@ -1,0 +1,9 @@
+/*
+Ejercicio 3
+Realiza el programa “Colección de discos” por tu cuenta, mirando lo menos
+posible el ejemplo que se proporciona. Pruébalo primero para ver cómo
+funciona y luego intenta implementarlo tú mismo.
+ */
+
+public class Ej3_003 {
+}

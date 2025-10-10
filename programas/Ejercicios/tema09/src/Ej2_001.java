@@ -1,0 +1,8 @@
+/*
+Ejercicio 1
+Implementa la clase Caballo vista en un ejercicio anterior. Pruébala creando
+instancias y aplicándole algunos métodos.
+ */
+
+public class Ej2_001 {
+}

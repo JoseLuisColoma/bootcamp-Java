@@ -4,119 +4,115 @@ import java.util.Scanner;
 
 public class GestorDeTareas {
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    private List<Tarea> tareas;
+    private Tarea ultimaTarea;
+    private final Scanner sc;
 
-        final int FINAL_DEL_PROGRAMA = 3;
-
-        int opcion;
-        int totalPrioridad = 0;
-
-        List<String> tareas = new ArrayList<>();
-        List<Integer> listaPrioridades = new ArrayList<>();
-
-        do {
-            mostrarMenu();
-            opcion = leerOpcion(sc);
-            totalPrioridad = ejecutarOpcion(opcion, sc, totalPrioridad, tareas, listaPrioridades);
-        } while (opcion != FINAL_DEL_PROGRAMA);
-
-        sc.close();
+    public GestorDeTareas() {
+        this.tareas = new ArrayList<>();
+        this.sc = new Scanner(System.in);
     }
 
     // ------------------- MÉTODOS PRINCIPALES -------------------
 
-    public static void mostrarMenu() {
+    public void iniciar() {
+        int opcion;
+        final int SALIR = 4;
+
+        do {
+            mostrarMenu();
+            opcion = leerOpcion();
+            ejecutarOpcion(opcion);
+        } while (opcion != SALIR);
+    }
+
+    private void mostrarMenu() {
         System.out.println("\n| ------------------------------ |");
         System.out.println("| ====== GESTOR DE TAREAS ====== |");
         System.out.println("| ------------------------------ |");
-        System.out.println("|              MENÚ              |");
         System.out.println("| 1.- Insertar nueva tarea       |");
         System.out.println("| 2.- Listar tareas              |");
-        System.out.println("| 3.- Salir                      |");
+        System.out.println("| 3.- Mostrar última tarea       |");
+        System.out.println("| 4.- Salir                      |");
         System.out.println("| ------------------------------ |");
     }
 
-    public static int leerOpcion(Scanner sc) {
-        System.out.print("\n> Elige una opción (1-3): ");
-
-        if (!sc.hasNextInt()) {
+    private int leerOpcion() {
+        System.out.print("\n> Elige una opción (1-4): ");
+        while (!sc.hasNextInt()) {
             System.out.println("Por favor, introduce un número válido.");
             sc.nextLine();
-            return 0;
         }
-
         int opcion = sc.nextInt();
-        sc.nextLine(); // limpiar buffer
+        sc.nextLine();
         return opcion;
     }
 
-    public static int ejecutarOpcion(int opcion, Scanner sc, int totalPrioridad,
-                                     List<String> tareas, List<Integer> listaPrioridades) {
-
+    private void ejecutarOpcion(int opcion) {
         switch (opcion) {
-            case 1 -> totalPrioridad = agregarTarea(sc, totalPrioridad, tareas, listaPrioridades);
-            case 2 -> listarTareas(tareas, listaPrioridades, totalPrioridad);
-            case 3 -> salirPrograma();
+            case 1 -> agregarTarea();
+            case 2 -> listarTareas();
+            case 3 -> mostrarUltimaTarea();
+            case 4 -> salirPrograma();
             default -> System.out.println("Opción inválida. Inténtalo de nuevo.");
         }
-
-        return totalPrioridad;
     }
 
-    public static int agregarTarea(Scanner sc, int totalPrioridad,
-                                   List<String> tareas, List<Integer> listaPrioridades) {
-
+    private void agregarTarea() {
         System.out.print("Nombre de la tarea: ");
-        String nombreTarea = sc.nextLine().trim();
+        String nombre = sc.nextLine().trim();
 
-        System.out.print("Prioridad de la tarea (1-5): ");
-        if (!sc.hasNextInt()) {
+        System.out.print("Prioridad (1-5): ");
+        while (!sc.hasNextInt()) {
             System.out.println("Entrada inválida. La prioridad debe ser un número.");
             sc.nextLine();
-            return totalPrioridad;
         }
-
-        int prioridadTarea = sc.nextInt();
+        int prioridad = sc.nextInt();
         sc.nextLine();
 
-        if (prioridadTarea >= 1 && prioridadTarea <= 5) {
-            tareas.add(nombreTarea);
-            listaPrioridades.add(prioridadTarea);
-            totalPrioridad += prioridadTarea;
-            System.out.printf("Tarea añadida: '%s' | Prioridad: %d%n", nombreTarea, prioridadTarea);
-            System.out.println("Suma total de prioridades: " + totalPrioridad);
-        } else {
+        if (prioridad < 1 || prioridad > 5) {
             System.out.println("Prioridad inválida (debe estar entre 1 y 5).");
+            return;
         }
 
-        return totalPrioridad;
+        Tarea nueva = new Tarea(nombre, prioridad);
+        tareas.add(nueva);
+        ultimaTarea = nueva;
+
+        System.out.println("Tarea añadida correctamente: " + nueva);
     }
 
-    public static void listarTareas(List<String> tareas, List<Integer> listaPrioridades, int totalPrioridad) {
+    private void listarTareas() {
         if (tareas.isEmpty()) {
             System.out.println("No hay tareas registradas todavía.");
+            return;
+        }
+
+        System.out.println("\n========== LISTA DE TAREAS ==========");
+        for (int i = 0; i < tareas.size(); i++) {
+            System.out.printf("%d. %s%n", i + 1, tareas.get(i));
+        }
+
+        double media = tareas.stream().mapToInt(Tarea::getPrioridad).average().orElse(0);
+        System.out.printf("Media de prioridades: %.2f%n", media);
+    }
+
+    private void mostrarUltimaTarea() {
+        if (ultimaTarea == null) {
+            System.out.println("No se ha agregado ninguna tarea aún.");
         } else {
-            System.out.println("| ------------------------------ |");
-            System.out.println("|        LISTA DE TAREAS         |");
-            for (int i = 0; i < tareas.size(); i++) {
-                System.out.printf("  %d. %s (Prioridad: %d)%n",
-                        i + 1, tareas.get(i), listaPrioridades.get(i));
-            }
-            System.out.println("| ------------------------------ |");
-            double mediaPrioridades = (double) totalPrioridad / tareas.size();
-            System.out.printf("Media de prioridades: %.2f%n", mediaPrioridades);
+            System.out.println("Última tarea registrada:");
+            ultimaTarea.ejecutar();
         }
     }
 
-    public static void salirPrograma() {
-        System.out.print("\nSaliendo del programa ");
+    private void salirPrograma() {
+        System.out.print("\nSaliendo del programa");
         try {
             for (int i = 0; i < 3; i++) {
-                Thread.sleep(600);
+                Thread.sleep(500);
                 System.out.print(".");
             }
-            Thread.sleep(500);
         } catch (InterruptedException e) {
             System.out.println("\nProceso interrumpido.");
         }

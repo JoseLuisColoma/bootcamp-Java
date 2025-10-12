@@ -1,10 +1,24 @@
 /*
 Ejercicio 14
-Realiza un programa que haga justo lo contrario a lo que hace el ejercicio 6. El
-programa intentará adivinar el número que estás pensando - un número entre 0
-y 100 - teniendo para ello 5 oportunidades. En cada intento fallido, el programa
-debe preguntar si el número que estás pensando es mayor o menor que el que
-te acaba de decir.
+Escribe un programa que pida 8 palabras y las almacene en un array. A
+continuación, las palabras correspondientes a colores se deben almacenar al
+comienzo y las que no son colores a continuación. Puedes utilizar tantos arrays
+auxiliares como quieras. Los colores que conoce el programa deben estar en
+otro array y son los siguientes: verde, rojo, azul, amarillo, naranja, rosa, negro,
+blanco y morado.
+Ejemplo:
+Array original:
+┌────────┬────────┬────────┬────────┬────────┬────────┬────────┬────────┐
+│ 0 │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │
+├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+│casa │azul │verde │orden │morado │bombilla│bici │rosa │
+└────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┘
+Array resultado:
+┌────────┬────────┬────────┬────────┬────────┬────────┬────────┬────────┐
+│ 0      │ 1      │ 2      │ 3      │ 4      │ 5      │ 6      │ 7      │
+├────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+│azul    │verde   │morado  │rosa    │casa    │orden   │bombilla│bici    │
+└────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┘
  */
 
 public class Ej014 {

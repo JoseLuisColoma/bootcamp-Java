@@ -1,9 +1,10 @@
 /*
 Ejercicio 10
-Realiza un programa que pinte por pantalla diez líneas formadas por caracteres.
-El carácter con el que se pinta cada línea se elige de forma aleatoria entre uno
-de los siguientes: *, -, =, ., |, @. Las líneas deben tener una longitud aleatoria
-entre 1 y 40 caracteres.
+Escribe un programa que genere 20 números enteros aleatorios entre 0 y 100
+y que los almacene en un array. El programa debe ser capaz de pasar todos
+los números pares a las primeras posiciones del array (del 0 en adelante) y
+todos los números impares a las celdas restantes. Utiliza arrays auxiliares si es
+necesario.
  */
 
 public class Ej010 {

@@ -1,8 +1,9 @@
 /*
 Ejercicio 8
-Modifica el programa anterior para que la probabilidad de que salga un 1 sea
-de 1/2, la probabilidad de que salga x sea de 1/3 y la probabilidad de que salga
-2 sea de 1/6. Pista: 1/2 = 3/6 y 1/3 = 2/6.
+Realiza un programa que pida la temperatura media que ha hecho en cada mes
+de un determinado año y que muestre a continuación un diagrama de barras
+horizontales con esos datos. Las barras del diagrama se pueden dibujar a base
+de asteriscos o cualquier otro carácter.
  */
 
 public class Ej008 {

@@ -1,9 +1,10 @@
 /*
 Ejercicio 6
-Escribe un programa que piense un número al azar entre 0 y 100. El usuario debe
-adivinarlo y tiene para ello 5 oportunidades. Después de cada intento fallido,
-el programa dirá cuántas oportunidades quedan y si el número introducido es
-menor o mayor que el número secreto.
+Escribe un programa que lea 15 números por teclado y que los almacene en un
+array. Rota los elementos de ese array, es decir, el elemento de la posición 0
+debe pasar a la posición 1, el de la 1 a la 2, etc. El número que se encuentra en
+la última posición debe pasar a la posición 0. Finalmente, muestra el contenido
+del array.
  */
 
 public class Ej006 {

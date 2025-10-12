@@ -1,32 +1,11 @@
 /*
 Ejercicio 32
-Realiza un programa que pinte un sendero aleatorio. Los bordes se pintan con
-el carácter “|”. La anchura del sendero siempre es la misma, los dos caracteres
-del borde más cuatro caracteres en medio, en total 6 caracteres (incluyendo
-espacios). A cada metro, el sendero puede continuar recto, girar un carácter a
-la izquierda o girar un carácter a la derecha, por supuesto de forma aleatoria.
-Por cada metro de sendero - representado por una línea - puede que haya un
-obstáculo o puede que no, la probabilidad es del 50%. La posición del obstáculo
-es aleatoria dentro de la línea. En caso de existir un obstáculo en un metro de
-sendero (en una línea), puede ser una planta (carácter *) o una piedra (carácter
-O), la probabilidad de que salga uno u otro es la misma. Recuerda que nunca
-habrá más de un obstáculo por metro de sendero, habrá uno o ninguno.
-Ejemplo 1:
-Introduzca la longitud del sendero en metros: 7
-| * |
-| O|
-| |
-| * |
-|* |
-| O |
-| |
-Ejemplo 2:
-Introduzca la longitud del sendero en metros: 5
-| |
-| O|
-| |
-| * |
-|* |
+Ejercicio 11 Bidimensionales
+Realiza un programa que muestre por pantalla un array de 10 filas por 10
+columnas relleno con números aleatorios entre 200 y 300. A continuación, el
+programa debe mostrar los números de la diagonal que va desde la esquina
+superior izquierda a la esquina inferior derecha, así como el máximo, el mínimo
+y la media de los números que hay en esa diagonal.
  */
 
 public class Ej032 {

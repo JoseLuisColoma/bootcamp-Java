@@ -1,22 +1,10 @@
 /*
 Ejercicio 26
-Realiza un programa que pinte una tableta de turrón con un bocado realizado de
-forma aleatoria. El ancho y el alto de la tableta se pide por teclado. El bocado se
-da alrededor del turrón, obviamente no se puede dar un bocado por en medio
-de la tableta.
-Ejemplo 1:
-Introduzca la anchura de la tableta: 6
-Introduzca la altura de la tableta: 4
-******
-*****
-******
-******
-Ejemplo 2:
-Introduzca la anchura de la tableta: 7
-Introduzca la altura de la tableta: 3
-*******
-*******
- ******
+Ejercicio 5 Bidimensionales
+Realiza un programa que rellene un array de 6 filas por 10 columnas con
+números enteros positivos comprendidos entre 0 y 1000 (ambos incluidos). A
+continuación, el programa deberá dar la posición tanto del máximo como del
+mínimo.
  */
 
 public class Ej026 {

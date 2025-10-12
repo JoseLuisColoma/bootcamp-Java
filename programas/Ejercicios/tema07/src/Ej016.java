@@ -1,25 +1,16 @@
 /*
 Ejercicio 16
-Realiza un simulador de máquina tragaperras simplificada que cumpla los
-siguientes requisitos:
-a) El ordenador mostrará una tirada que consiste en mostrar 3 figuras. Hay 5
-figuras posibles: corazón, diamante, herradura, campana y limón.
-b) Si las tres figuras son diferentes se debe mostrar el mensaje “Lo siento, ha
-perdido”.
-c) Si hay dos figuras iguales y una diferente se debe mostrar el mensaje “Bien,
-ha recuperado su moneda”.
-d) Si las tres figuras son iguales se debe mostrar “Enhorabuena, ha ganado
-10 monedas”.
-Ejemplo 1:
-diamante diamante limón
-Bien, ha recuperado su moneda
-Ejemplo 2:
-herradura campana diamante
-Lo siento, ha perdido
-Ejemplo 3:
-corazón corazón corazón
-Enhorabuena, ha ganado 10 monedas
+Escribe un programa que rellene un array de 20 elementos con números enteros
+aleatorios comprendidos entre 0 y 400 (ambos incluidos). A continuación el
+programa mostrará el array y preguntará si el usuario quiere resaltar los
+múltiplos de 5 o los múltiplos de 7. Seguidamente se volverá a mostrar el array
+escribiendo los números que se quieren resaltar entre corchetes.
+Ejemplo:
+159 204 20 250 178 90 353 32 229 357 224 54 260 310 140 249 335 326 223 13
+¿Qué números quiere resaltar? (1 – los múltiplos de 5, 2 – los múltiplos de 7): 1
+159 204 [20] [250] 178 [90] 353 32 229 357 224 54 [260] [310] [140] 249 [335] 326 223 13
  */
 
 public class Ej016 {
+
 }

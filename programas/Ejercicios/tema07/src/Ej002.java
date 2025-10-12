@@ -1,12 +1,28 @@
 /*
 Ejercicio 2
-Realiza un programa que muestre al azar el nombre de una carta de la baraja
-francesa. Esta baraja está dividida en cuatro palos: picas, corazones, diamantes
-y tréboles. Cada palo está formado por 13 cartas, de las cuales 9 cartas son
-numerales y 4 literales: 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K y A (que sería el
-1). Para convertir un número en una cadena de caracteres podemos usar
-String.valueOf(n).
+Define un array de 10 caracteres con nombre simbolo y asigna valores a los
+elementos según la tabla que se muestra a continuación. Muestra el contenido
+de todos los elementos del array. ¿Qué sucede con los valores de los elementos
+que no han sido inicializados?
+
  */
 
+import java.util.Arrays;
+
 public class Ej002 {
+    public static void main(String[] args) {
+
+        char[] simbolo = new char[10];
+        simbolo[0] = 'a';
+        simbolo[1] = 'x';
+        simbolo[4] = '@';
+        simbolo[6] = ' ';
+        simbolo[7] = '+';
+        simbolo[8] = 'Q';
+
+        System.out.println(Arrays.toString(simbolo));
+        System.out.println(simbolo);
+
+
+    }
 }

@@ -1,8 +1,8 @@
 /*
 Ejercicio 5
-Muestra 50 números enteros aleatorios entre 100 y 199 (ambos incluidos)
-separados por espacios. Muestra también el máximo, el mínimo y la media
-de esos números.
+Escribe un programa que pida 10 números por teclado y que luego muestre los
+números introducidos junto con las palabras “máximo” y “mínimo” al lado del
+máximo y del mínimo respectivamente.
  */
 
 public class Ej005 {

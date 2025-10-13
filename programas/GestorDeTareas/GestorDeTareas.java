@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -7,12 +8,14 @@ public class GestorDeTareas {
     private ArrayList<Tarea> listaTareas;
     private HashMap<String, Tarea> mapaTareas;
     private Scanner sc;
-    private Tarea ultimaTarea; // ✅ Se declara aquí
+    private Tarea ultimaTarea;
+    private static final String ARCHIVO_TAREAS = "tareas.txt";
 
     public GestorDeTareas() {
         listaTareas = new ArrayList<>();
         mapaTareas = new HashMap<>();
         sc = new Scanner(System.in);
+        cargarTareasDesdeArchivo();
     }
 
     // ------------------- MÉTODOS PRINCIPALES -------------------
@@ -162,5 +165,40 @@ public class GestorDeTareas {
             System.out.println("\nProceso interrumpido.");
         }
         System.out.println("\nGracias por usar el Gestor de Tareas.");
+    }
+
+    // ------------------- PERSISTENCIA -------------------
+
+    private void guardarTareasEnArchivo() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(ARCHIVO_TAREAS))) {
+            for (Tarea t : listaTareas) {
+                writer.write(t.getId() + ";" + t.getNombre() + ";" + t.getPrioridad());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error al guardar las tareas: " + e.getMessage());
+        }
+    }
+
+    private void cargarTareasDesdeArchivo() {
+        File archivo = new File(ARCHIVO_TAREAS);
+        if (!archivo.exists()) return;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                String[] partes = linea.split(";");
+                if (partes.length == 3) {
+                    String id = partes[0];
+                    String nombre = partes[1];
+                    int prioridad = Integer.parseInt(partes[2]);
+                    Tarea tarea = new Tarea(id, nombre, prioridad);
+                    listaTareas.add(tarea);
+                    mapaTareas.put(id, tarea);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error al cargar las tareas: " + e.getMessage());
+        }
     }
 }

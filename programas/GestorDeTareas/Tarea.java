@@ -16,7 +16,7 @@ public class Tarea extends Actividad {
 
     @Override
     public void ejecutar() {
-        System.out.println("Ejecutando tarea: " + getNombre() + " (Prioridad " + prioridad + ")");
+        System.out.println("Ejecutando tarea: " + getNombre() + " (Prioridad: " + prioridad + ")");
     }
 
     @Override

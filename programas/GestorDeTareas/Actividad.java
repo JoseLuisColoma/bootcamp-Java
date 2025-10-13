@@ -17,4 +17,3 @@ public abstract class Actividad {
 
     public abstract void ejecutar();
 }
-

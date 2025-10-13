@@ -1,0 +1,3 @@
+T001;Preparar informe financiero;4
+T002;Enviar correo a equipo;3
+T003;Actualizar documentación;5

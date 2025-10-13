@@ -1,23 +1,25 @@
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class GestorDeTareas {
 
-    private List<Tarea> tareas;
-    private Tarea ultimaTarea;
-    private final Scanner sc;
+    private ArrayList<Tarea> listaTareas;
+    private HashMap<String, Tarea> mapaTareas;
+    private Scanner sc;
+    private Tarea ultimaTarea; // ✅ Se declara aquí
 
     public GestorDeTareas() {
-        this.tareas = new ArrayList<>();
-        this.sc = new Scanner(System.in);
+        listaTareas = new ArrayList<>();
+        mapaTareas = new HashMap<>();
+        sc = new Scanner(System.in);
     }
 
     // ------------------- MÉTODOS PRINCIPALES -------------------
 
     public void iniciar() {
         int opcion;
-        final int SALIR = 4;
+        final int SALIR = 0;
 
         do {
             mostrarMenu();
@@ -30,15 +32,17 @@ public class GestorDeTareas {
         System.out.println("\n| ------------------------------ |");
         System.out.println("| ====== GESTOR DE TAREAS ====== |");
         System.out.println("| ------------------------------ |");
-        System.out.println("| 1.- Insertar nueva tarea       |");
-        System.out.println("| 2.- Listar tareas              |");
-        System.out.println("| 3.- Mostrar última tarea       |");
-        System.out.println("| 4.- Salir                      |");
+        System.out.println("| 1. Añadir nueva tarea          |");
+        System.out.println("| 2. Listar todas las tareas     |");
+        System.out.println("| 3. Buscar tarea por ID         |");
+        System.out.println("| 4. Eliminar tarea              |");
+        System.out.println("| 5. Mostrar última tarea        |");
+        System.out.println("| 0. Salir                       |");
         System.out.println("| ------------------------------ |");
     }
 
     private int leerOpcion() {
-        System.out.print("\n> Elige una opción (1-4): ");
+        System.out.print("\n> Elige una opción (0-5): ");
         while (!sc.hasNextInt()) {
             System.out.println("Por favor, introduce un número válido.");
             sc.nextLine();
@@ -52,15 +56,25 @@ public class GestorDeTareas {
         switch (opcion) {
             case 1 -> agregarTarea();
             case 2 -> listarTareas();
-            case 3 -> mostrarUltimaTarea();
-            case 4 -> salirPrograma();
+            case 3 -> buscarTareaPorId();
+            case 4 -> eliminarTarea();
+            case 5 -> mostrarUltimaTarea();
+            case 0 -> salirPrograma();
             default -> System.out.println("Opción inválida. Inténtalo de nuevo.");
         }
     }
 
     private void agregarTarea() {
+        System.out.print("ID de la tarea: ");
+        String id = sc.nextLine().trim();
+
+        if (mapaTareas.containsKey(id)) {
+            System.out.println("Ya existe una tarea con ese ID.");
+            return;
+        }
+
         System.out.print("Nombre de la tarea: ");
-        String nombre = sc.nextLine().trim();
+        String nombre = sc.nextLine().trim(); // ✅ faltaba esta línea
 
         System.out.print("Prioridad (1-5): ");
         while (!sc.hasNextInt()) {
@@ -75,26 +89,57 @@ public class GestorDeTareas {
             return;
         }
 
-        Tarea nueva = new Tarea(nombre, prioridad);
-        tareas.add(nueva);
-        ultimaTarea = nueva;
+        Tarea nueva = new Tarea(id, nombre, prioridad);
+        listaTareas.add(nueva);
+        mapaTareas.put(id, nueva);
+        ultimaTarea = nueva; // ✅ guardamos la última tarea
 
         System.out.println("Tarea añadida correctamente: " + nueva);
     }
 
     private void listarTareas() {
-        if (tareas.isEmpty()) {
+        if (listaTareas.isEmpty()) {
             System.out.println("No hay tareas registradas todavía.");
             return;
         }
 
         System.out.println("\n========== LISTA DE TAREAS ==========");
-        for (int i = 0; i < tareas.size(); i++) {
-            System.out.printf("%d. %s%n", i + 1, tareas.get(i));
+        for (Tarea t : listaTareas) {
+            System.out.println(t);
         }
 
-        double media = tareas.stream().mapToInt(Tarea::getPrioridad).average().orElse(0);
-        System.out.printf("Media de prioridades: %.2f%n", media);
+        double media = listaTareas.stream()
+                .mapToInt(Tarea::getPrioridad)
+                .average()
+                .orElse(0);
+
+        System.out.printf("Media de prioridad: %.2f%n", media);
+    }
+
+    private void buscarTareaPorId() {
+        System.out.print("Introduce el ID de la tarea: ");
+        String id = sc.nextLine().trim();
+
+        Tarea tarea = mapaTareas.get(id);
+        if (tarea != null) {
+            System.out.println("Tarea encontrada:");
+            tarea.ejecutar();
+        } else {
+            System.out.println("No se encontró ninguna tarea con ese ID.");
+        }
+    }
+
+    private void eliminarTarea() {
+        System.out.print("Introduce el ID de la tarea a eliminar: ");
+        String id = sc.nextLine().trim();
+
+        Tarea tarea = mapaTareas.remove(id);
+        if (tarea != null) {
+            listaTareas.remove(tarea);
+            System.out.println("Tarea eliminada correctamente: " + tarea);
+        } else {
+            System.out.println("No existe una tarea con ese ID.");
+        }
     }
 
     private void mostrarUltimaTarea() {
@@ -110,7 +155,7 @@ public class GestorDeTareas {
         System.out.print("\nSaliendo del programa");
         try {
             for (int i = 0; i < 3; i++) {
-                Thread.sleep(500);
+                Thread.sleep(800);
                 System.out.print(".");
             }
         } catch (InterruptedException e) {

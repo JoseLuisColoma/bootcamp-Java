@@ -1,9 +1,8 @@
 public class Tarea extends Actividad {
-
     private int prioridad;
 
-    public Tarea(String nombre, int prioridad) {
-        super(nombre);
+    public Tarea(String id, String nombre, int prioridad) {
+        super(id, nombre);
         this.prioridad = prioridad;
     }
 
@@ -17,11 +16,11 @@ public class Tarea extends Actividad {
 
     @Override
     public void ejecutar() {
-        System.out.println("Tarea: " + getNombre() + " (Prioridad: " + getPrioridad() + ")");
+        System.out.println("Ejecutando tarea: " + getNombre() + " (Prioridad " + prioridad + ")");
     }
 
     @Override
     public String toString() {
-        return "Tarea: " + getNombre() + " | Prioridad: " + prioridad;
+        return "ID: " + getId() + " | " + getNombre() + " | Prioridad: " + prioridad;
     }
 }

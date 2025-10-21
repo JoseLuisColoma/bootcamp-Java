@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>🏀 NBA Viewer</title>
+    <link rel="stylesheet" href="estilos.css">
+    <script defer src="js/jugadores.js"></script>
+</head>
+<body>
+<header>
+    <h1>🏀 NBA Viewer</h1>
+    <nav>
+        <button class="active">Ver Jugadores</button>
+        <button onclick="window.location.href='equipos.html'">Ver Equipos</button>
+    </nav>
+</header>
+
+<main>
+    <div class="filtro">
+        <label for="equipoFiltro">Filtrar por equipo:</label>
+        <select id="equipoFiltro"></select>
+    </div>
+
+    <table id="tablaJugadores">
+        <thead>
+        <tr><th>Nombre</th><th>Posición</th><th>Equipo</th></tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</main>
+
+<footer>
+    <p>Desarrollado por jocodev · Datos cortesía de <a href="https://balldontlie.io" target="_blank">balldontlie.io</a></p>
+</footer>
+</body>
+</html>

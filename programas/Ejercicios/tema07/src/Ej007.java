@@ -19,10 +19,7 @@ public class Ej007 {
         //int[] numerosRotados = new int[CANTIDAD_NUMEROS];
 
         // Entrada de datos
-        for (int i = 0; i < CANTIDAD_NUMEROS; i++) {
-            numeros[i] =
 
-        }
 
     }
 
